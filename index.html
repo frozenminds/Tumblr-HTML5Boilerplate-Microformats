@@ -54,17 +54,15 @@
         <header>
             {block:IfHeaderImage}<img src="{image:Header}" />{/block:IfHeaderImage}
             {block:IfNotHeaderImage}{Title}{/block:IfNotHeaderImage}
+
+            {Description}
         </header>
         
         <div id="main">
 
 
 
-            {Description}
-
-
-
-
+            <!-- Standard Search code -->
             <div id="search">
                 <form action="/search" method="get" id="search-form">
                     <input type="hidden" name="t" value="{Name}" />
@@ -78,24 +76,34 @@
                 <input type="radio" id="search-scope-me" name="scope" checked onclick="document.getElementById('search-form').action='/search'" /> <label for="search-scope-me" onclick="document.getElementById('search-form').action='/search'">{lang:My blog}</label>
                 <input type="radio" id="search-scope-all" name="scope" onclick="document.getElementById('search-form').action='http://www.tumblr.com/search'" /> <label for="search-scope-all" onclick="document.getElementById('search-form').action='http://www.tumblr.com/search'">{lang:All of Tumblr}</label>
             </div>
-           
-           
-           
-           
-            
-            <a href="http://www.tumblr.com/follow/{Name}"><div class="heading" id="followontumblr">{lang:Follow on Tumblr}</div></a>
+ 
+            <!-- search results -->          
+            {block:SearchPage}
+                {block:SearchResults}
+                    <div id="searchresults">{lang:SearchResultCount results for SearchQuery 2}</div>
+                {/block:SearchResults}
+                
+                {block:NoSearchResults}
+                    <div id="searchresults">{lang:No search results for SearchQuery 2}</div>
+                {/block:NoSearchResults}
+            {/block:SearchPage}
 
+          
+            <!-- follow me link --> 
+            <a href="http://www.tumblr.com/follow/{Name}" id="followontumblr">{lang:Follow on Tumblr}</a>
+
+            <!-- people i follow -->
             {block:IfShowPeopleIFollow}
                 {block:Following}
-                    <div class="heading" id="following">{lang:Following}</div>
-                    <div class="content" id="following-avatars">
+                    <div id="following">{lang:Following}</div>
+                    <div id="following-avatars">
                         {block:Followed}<a href="{FollowedURL}"><img src="{FollowedPortraitURL-40}" /></a>{/block:Followed}
                     </div>
                 {/block:Following}
             {/block:IfShowPeopleIFollow}
 
 
-
+            <!-- twitter specific stuff -->
             {block:Twitter}
             <div id="twitterwrapper" style="display:none;">
                 <a href="http://twitter.com/{TwitterUsername}" style="text-decoration:none;"><div class="heading" id="twitter">{lang:Latest Tweets}</div></a>
@@ -114,33 +122,17 @@
 
 
 
-
+            <!-- nav buttons -->
             <div id="buttons">
-                <div class="row">
-                    <div class="button" id="button-rss"><a href="{RSS}">{lang:RSS feed}</a></div>
-                    <div class="button" id="button-random"><a href="/random">{lang:Random}</a></div>
-                </div>
-                <div class="clear"></div>
-                <div class="row">
-                    <div class="button" id="button-archive"><a href="/archive">{lang:Archive}</a></div>
-                    <div class="button" id="button-mobile"><a href="/mobile">{lang:Mobile}</a></div>
-                </div>
-                <div class="clear"></div>
+                <div class="button" id="button-rss"><a href="{RSS}">{lang:RSS feed}</a></div>
+                <div class="button" id="button-random"><a href="/random">{lang:Random}</a></div>
+                <div class="button" id="button-archive"><a href="/archive">{lang:Archive}</a></div>
+                <div class="button" id="button-mobile"><a href="/mobile">{lang:Mobile}</a></div>
             </div>
 
 
 
 
-
-            {block:SearchPage}
-                {block:SearchResults}
-                    <div id="searchresults">{lang:SearchResultCount results for SearchQuery 2}</div>
-                {/block:SearchResults}
-                
-                {block:NoSearchResults}
-                    <div id="searchresults">{lang:No search results for SearchQuery 2}</div>
-                {/block:NoSearchResults}
-            {/block:SearchPage}
 
 
 
