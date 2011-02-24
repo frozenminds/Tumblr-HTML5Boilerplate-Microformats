@@ -189,18 +189,26 @@
                     
                     {block:Date}
                         <a href="{Permalink}">
-                            <div class="footer for_permalink">
-                                <div class="date">
-                                    {block:Reblog}
-                                        {lang:Reblogged TimeAgo from ReblogParentName} {block:RebloggedFromReblog}(<span style="text-transform:lowercase;">{lang:Originally from ReblogRootName}</span>){/block:RebloggedFromReblog}
-                                    {/block:Reblog}
-                                    
-                                    {block:NotReblog}
-                                        {lang:Posted TimeAgo from source}
-                                    {/block:NotReblog}
-                                </div>
-                                <div class="notes">{block:NoteCount}{NoteCountWithLabel}{/block:NoteCount} {block:IfDisqusShortname}{block:NoteCount}&bull;{/block:NoteCount} <a href="{Permalink}#disqus_thread">{lang:View comments}</a>{/block:IfDisqusShortname}</div>
-                                <div class="clear"></div>
+                            <div class="date">
+                                {block:Reblog}
+                                    {lang:Reblogged}
+                                    <date datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero} {24HourWithZero}:{Minutes}:{Seconds}:{Beats}">{TimeAgo}</date>
+                                    {lang:from ReblogParentName}
+                                    {block:RebloggedFromReblog}({lang:Originally from ReblogRootName})
+                                    {/block:RebloggedFromReblog}
+                                {/block:Reblog}
+                                
+                                {block:NotReblog}
+                                    {lang:Posted}
+                                    <date datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero} {24HourWithZero}:{Minutes}:{Seconds}:{Beats}">{TimeAgo}</date>
+                                    {lang:from source}
+                                {/block:NotReblog}
+                            </div>
+                            <div class="notes">
+                                {block:NoteCount}{NoteCountWithLabel}{/block:NoteCount} 
+                                {block:IfDisqusShortname}
+                                    {block:NoteCount}&bull;{/block:NoteCount} <a href="{Permalink}#disqus_thread">{lang:View comments}</a>
+                                {/block:IfDisqusShortname}
                             </div>
                         </a>
                     {/block:Date}
