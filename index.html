@@ -64,7 +64,6 @@
 
             <!-- the "submit" link -->
             {block:SubmissionsEnabled}<a href="/submit" id="submit-link">{SubmitLabel}</a>{/block:SubmissionsEnabled}
-
         </header>
         
         <section id="main">
@@ -107,16 +106,17 @@
 
 
             <!-- the meat and potatoes -->
+            <section id="posts">
             {block:Posts}
                 <div class="post">
                     
                     {block:Photo}
-                        <div class="media">{LinkOpenTag}<img src="{PhotoURL-500}" alt="{PhotoAlt}" />{LinkCloseTag}</div>
+                        <div class="media photo">{LinkOpenTag}<img src="{PhotoURL-500}" alt="{PhotoAlt}" />{LinkCloseTag}</div>
                         {block:Caption}<div class="copy">{Caption}</div>{/block:Caption}
                     {/block:Photo}
                     
                     {block:Video}
-                        <div class="media">{Video-500}</div>
+                        <div class="media video">{Video-500}</div>
                         {block:Caption}<div class="copy">{Caption}</div>{/block:Caption}
                     {/block:Video}
                     
@@ -189,21 +189,16 @@
                     
                     {block:Date}
                         <a href="{Permalink}">
-                            <div class="date">
-                                {block:Reblog}
-                                    {lang:Reblogged}
-                                    <date datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero} {24HourWithZero}:{Minutes}:{Seconds}:{Beats}">{TimeAgo}</date>
-                                    {lang:from ReblogParentName}
-                                    {block:RebloggedFromReblog}({lang:Originally from ReblogRootName})
-                                    {/block:RebloggedFromReblog}
-                                {/block:Reblog}
-                                
-                                {block:NotReblog}
-                                    {lang:Posted}
-                                    <date datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero} {24HourWithZero}:{Minutes}:{Seconds}:{Beats}">{TimeAgo}</date>
-                                    {lang:from source}
-                                {/block:NotReblog}
-                            </div>
+                             <date datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero} {24HourWithZero}:{Minutes}:{Seconds}:{Beats}">{lang:Posted TimeAgo}</date> {lang:By PostAuthorName}
+
+                            {block:NotReblog}
+                                <!-- original post -->
+                            {/block:NotReblog}
+
+                            {block:Reblog}
+                                {block:RebloggedFromReblog}({lang:Originally from ReblogRootName}){/block:RebloggedFromReblog}
+                            {/block:Reblog}
+                            
                             <div class="notes">
                                 {block:NoteCount}{NoteCountWithLabel}{/block:NoteCount} 
                                 {block:IfDisqusShortname}
@@ -250,7 +245,7 @@
                 </div>
                 <div class="bottom"></div>
             {/block:Posts}
-
+            </section>
 
 
 
@@ -341,6 +336,21 @@
 
     </div>
     <!-- end of #container -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
