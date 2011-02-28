@@ -218,13 +218,16 @@ mark {
 section.post {
 }
 
-section.post div {
+section.post .audio {
 }
 
-section.post div.quote {
+section.post .quote {
 }
 
-section.post div.photo {
+section.post .photo {
+}
+
+section.post .footer {
 }
 
 /* pagination */

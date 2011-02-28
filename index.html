@@ -14,7 +14,8 @@
     <meta name="description" content="{MetaDescription}" />
     {/block:Description}
 
-    <!-- tumblr specific meta data -->
+    <!-- variable meta data -->
+    <meta name="text:Flickr Username" content=""/>
     <meta name="color:Background" content="#fff" />
     <meta name="font:Title" content="Arial" />
     <meta name="font:Body" content="Arial" />
@@ -42,7 +43,6 @@
             font-family: {font:Body};
         }
     </style>
-
     <style type="text/css">{CustomCSS}</style>
 
     <script src="js/libs/modernizr-1.6.min.js"></script>
@@ -108,57 +108,94 @@
             <!-- the meat and potatoes -->
             <section id="posts">
             {block:Posts}
-                <div class="post">
                     
                     {block:Photo}
-                        <div class="media photo">{LinkOpenTag}<img src="{PhotoURL-500}" alt="{PhotoAlt}" />{LinkCloseTag}</div>
-                        {block:Caption}<div class="copy">{Caption}</div>{/block:Caption}
+                    <div class="post photo">
+                        {LinkOpenTag}<img src="{PhotoURL-500}" alt="{PhotoAlt}" />{LinkCloseTag}
+                        {block:Caption}
+                            <div class="caption">{Caption}</div>
+                        {/block:Caption}
+                    </div>
                     {/block:Photo}
                     
                     {block:Video}
-                        <div class="media video">{Video-500}</div>
-                        {block:Caption}<div class="copy">{Caption}</div>{/block:Caption}
+                    <div class="post video">
+                        {Video-500}
+                        {block:Caption}
+                            <div class="caption">{Caption}</div>
+                        {/block:Caption}
+                    </div>
                     {/block:Video}
+                   
+                    {block:Text}
+                    <div class="post text">
+                        {block:Title}
+                            <div class="title">{Title}</div>
+                        {/block:Title}
+                        {block:Body}
+                            <div class="body">{Body}</div>
+                        {/block:Body}
+                    </div>
+                    {/block:Text}
+                   
+                    {block:Link}
+                    <div class="post link">
+                        <a href="{URL}" {Target}>{Name} &raquo;</a>
+                        {block:Description}
+                            <div class="description">{Description}</div>
+                        {/block:Description}
+                    </div>
+                    {/block:Link}
+
+                    {block:Quote}
+                    <div class="post quote {Length}">
+                        <blockquote>
+                            {Quote}
+                        </blockquote>
+                        {block:Source}
+                            <div class="source">{Source}</div>
+                        {/block:Source}
+                    </div>
+                    {/block:Quote}
                     
                     {block:Audio}
+                    <div class="post audio">
                         {block:IfShowAlbumArtOnAudioPosts}
                             {block:AlbumArt}
                                 <div class="album_art">
-                                    <img src="{AlbumArtURL}" alt="{block:Artist}{Artist}{/block:Artist}{block:TrackName} - {TrackName}{/block:TrackName}" style="margin-bottom:10px;" />
+                                    <img src="{AlbumArtURL}" alt="{block:Artist}{Artist}{/block:Artist}{block:TrackName} - {TrackName}{/block:TrackName}" />
                                 </div>
                             {/block:AlbumArt}
                         {/block:IfShowAlbumArtOnAudioPosts}
                         
-                        <div class="audio">
-                            <div class="player">{AudioPlayerWhite}</div>
-                            <div class="meta">{PlayCountWithLabel}{block:ExternalAudio}<span class="download_external_audio"> &bull; <a href="{ExternalAudioURL}">{lang:Download}</a></span>{/block:ExternalAudio}</div>
-                            <div class="clear"></div>
+                        <div class="player">{AudioPlayerWhite}</div>
+                        
+                        <div class="meta">
+                            {PlayCountWithLabel}
+                            {block:ExternalAudio}
+                                <span class="download_external_audio"> &bull; <a href="{ExternalAudioURL}">{lang:Download}</a></span>
+                            {/block:ExternalAudio}
                         </div>
-                        <div class="clear"></div>
-                        {block:Caption}<div class="copy">{Caption}</div>{/block:Caption}
+
+                        {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
+                    </div>
                     {/block:Audio}
                     
-                    {block:Quote}
-                        <div class="quote {Length}">{Quote}</div>
-                        <div class="copy">
-                            <div class="quotebg">“</div>
-                            {block:Source}
-                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                                    <tr>
-                                        <td valign="top" style="width:20px;">&mdash;</td>
-                                        <td valign="top" class="quote_source">
-                                            {Source}
-                                        </td>
-                                    </tr>
-                                </table>
-                            {/block:Source}
-                        </div>
-                    {/block:Quote}
-                        
-                    {block:Text}
+                    {block:Chat}
+                    <div class="post chat">
                         {block:Title}<div class="title">{Title}</div>{/block:Title}
-                        <div class="copy">{Body}</div>
-                    {/block:Text}
+                        <div class="lines">
+                            {block:Lines}
+                                <div class="line {Alt}">{block:Label}<strong>{Label}</strong>{/block:Label} {Line}</div>
+                            {/block:Lines}
+                        </div>
+                    </div>
+                    {/block:Chat}
+                       
+                       
+                       
+ 
+
                     
                     {block:Answer}
                         <div class="question">
@@ -169,23 +206,9 @@
                         <div class="copy">{Answer}</div>
                     {block:Answer}
                     
-                    {block:Chat}
-                        {block:Title}<div class="title">{Title}</div>{/block:Title}
-                        <div class="chat">
-                            <div class="lines">
-                                {block:Lines}
-                                    <div class="line {Alt}">{block:Label}<strong>{Label}</strong>{/block:Label} {Line}</div>
-                                {/block:Lines}
-                            </div>
-                        </div>
-                        <div class="clear"></div>
-                        <div style="height:10px;"></div>
-                    {/block:Chat}
+
                     
-                    {block:Link}
-                        <div class="link"><a href="{URL}" {Target}>{Name} &raquo;</a></div>
-                        {block:Description}<div class="copy">{Description}</div>{/block:Description}
-                    {/block:Link}
+            
                     
                     {block:Date}
                         <a href="{Permalink}">
@@ -209,13 +232,11 @@
                     {/block:Date}
                     
                     <div class="footer {block:ContentSource}with_source_url{/block:ContentSource}" style="
-                        display:none;
                         {block:IfShowTags}{block:HasTags}display:block;{/block:HasTags}{/block:IfShowTags}
                         {block:ContentSource}display:block;{/block:ContentSource}">
                         {block:IfShowTags}
                             {block:HasTags}<div class="tags">{lang:Tagged}: {block:Tags}<a href="{TagURL}">{Tag}</a><span class="tag-commas">, </span>{/block:Tags}.</div>{/block:HasTags}
                         {/block:IfShowTags}
-                        
                         {block:ContentSource}
                             <a href="{SourceURL}" class="source_url">
                                 {lang:Source}:
@@ -223,7 +244,6 @@
                                 {block:NoSourceLogo}{SourceTitle}{/block:NoSourceLogo}
                             </a>
                         {/block:ContentSource}
-                        
                         <div class="clear"></div>
                     </div>
                     
@@ -242,8 +262,6 @@
                         {/block:Permalink}
                     {/block:IfDisqusShortname}
                     
-                </div>
-                <div class="bottom"></div>
             {/block:Posts}
             </section>
 
@@ -332,8 +350,6 @@
         <footer>
             &copy; {CopyrightYears} <a href="http://www.tumblr.com">{lang:Powered by Tumblr}</a>
         </footer>
-
-
     </div>
     <!-- end of #container -->
 
