@@ -2,6 +2,9 @@ Summary:
 
 A basic HTML 5 boilerplate template for building custom Tumblr themes.
 
+Works great with CSS Inject for Chrome:
+https://chrome.google.com/webstore/detail/fmiohbdblcemacakpnoinjmcelddpjbg
+
 Building upon the great work already done by: 
 http://html5boilerplate.com
 
