@@ -94,16 +94,33 @@ button {  width: auto; overflow: visible; }
 
 
 /* 
-    page layout 
+    main layout 
 */
 
 body {
 }
 
 nav {
+    float: right;
+    width: 20%;
+}
+
+nav a {
+    display: block;
 }
 
 header {
+    width: 100%;
+    clear: both;
+    text-align: center;
+    padding: 10px 0 20px 0;
+    background-color: #ddd;
+    border-bottom: solid 2px #333;
+}
+
+#title {
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 150%;
 }
 
 #container {
@@ -112,9 +129,13 @@ header {
 
 #main {
     /* main content */
+    margin: 10px 0 10px 0;
 }
 
 footer {
+    padding: 10px;
+    background-color: #ccc;
+    clear: both;
 }
 
 
@@ -168,9 +189,15 @@ mark {
 }
 
 #description {
+    font-style: italic;
 }
 
-/* buttons */
+/* nav */
+
+#page-links {
+    margin-bottom: 20px;
+}
+
 #button-rss {
 }
 
@@ -185,6 +212,9 @@ mark {
 
 /* search */
 #search {
+    width: 250px;
+    float: right;
+    margin: 10px;
 }
 
 #search-form {
@@ -215,19 +245,34 @@ mark {
 
 
 /* posts */
-section.post {
+#posts {
+    border: dotted 2px #666;
+    width: 70%;
+    float: left;
+    min-width: 500px;
 }
 
-section.post .audio {
+.post {
+    margin: 10px 20px 0 20px;
+    border: solid 1px #ccc;
+    padding: 10px;
 }
 
-section.post .quote {
+.post .audio {
 }
 
-section.post .photo {
+.post .quote {
 }
 
-section.post .footer {
+.post .photo {
+}
+
+#posts .footer {
+    border: dashed 1px #ccc;
+    border-top: none;
+    margin: 0 20px 20px 20px;
+    text-align: right;
+    padding: 10px;
 }
 
 /* pagination */
@@ -243,7 +288,6 @@ section.post .footer {
 
 #tweets {
 }
-
 
 
 

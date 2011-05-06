@@ -10,6 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="author" content="Ed Rooth (edrooth.com)">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     {block:Description}
     <meta name="description" content="{MetaDescription}" />
     {/block:Description}
@@ -34,7 +35,6 @@
     <link rel="shortcut icon" href="{Favicon}">
     <link rel="apple-touch-icon" href="{PortraitURL-128}">
     <link rel="alternate" type="application/rss+xml" href="{RSS}">
-    <link rel="stylesheet" href="css/style.css?v=2">
    
     <!-- variable styles --> 
     <style type="text/css">
@@ -50,24 +50,22 @@
 
 <body>
 
+
     <div id="container">
+
+
         <header>
             {block:IfHeaderImage}<img src="{image:Header}" id="header-img" />{/block:IfHeaderImage}
-            {block:IfNotHeaderImage}{Title}{/block:IfNotHeaderImage}
+            {block:IfNotHeaderImage}<div id="title">{Title}</div>{/block:IfNotHeaderImage}
 
             <div id="description">{Description}</div>
 
-            <a href="http://www.tumblr.com/follow/{Name}" id="followontumblr-link">{lang:Follow on Tumblr}</a>
-
-            <!-- the "ask" link -->
-            {block:AskEnabled}<a href="/ask" id="ask-link">{AskLabel}</a>{/block:AskEnabled}
-
-            <!-- the "submit" link -->
-            {block:SubmissionsEnabled}<a href="/submit" id="submit-link">{SubmitLabel}</a>{/block:SubmissionsEnabled}
         </header>
+
+
+
         
         <section id="main">
-
 
 
             <!-- search form -->
@@ -91,12 +89,12 @@
             <!-- search results -->          
             {block:SearchPage}
                 <section id="search-results">
-                {block:SearchResults}
-                    {lang:SearchResultCount results for SearchQuery 2}
-                {/block:SearchResults}
-                {block:NoSearchResults}
-                    {lang:No search results for SearchQuery 2}
-                {/block:NoSearchResults}
+                    {block:SearchResults}
+                        {lang:SearchResultCount results for SearchQuery 2}
+                    {/block:SearchResults}
+                    {block:NoSearchResults}
+                        {lang:No search results for SearchQuery 2}
+                    {/block:NoSearchResults}
                 </section>
            {/block:SearchPage}
 
@@ -108,159 +106,157 @@
             <!-- the meat and potatoes -->
             <section id="posts">
             {block:Posts}
+
                     
                     {block:Photo}
-                    <div class="post photo">
-                        {LinkOpenTag}<img src="{PhotoURL-500}" alt="{PhotoAlt}" />{LinkCloseTag}
-                        {block:Caption}
-                            <div class="caption">{Caption}</div>
-                        {/block:Caption}
-                    </div>
+                        <div class="post photo">
+                            {LinkOpenTag}<img src="{PhotoURL-500}" alt="{PhotoAlt}" />{LinkCloseTag}
+                            {block:Caption}
+                                <div class="caption">{Caption}</div>
+                            {/block:Caption}
+                        </div>
                     {/block:Photo}
+
                     
                     {block:Video}
-                    <div class="post video">
-                        {Video-500}
-                        {block:Caption}
-                            <div class="caption">{Caption}</div>
-                        {/block:Caption}
-                    </div>
+                        <div class="post video">
+                            {Video-500}
+                            {block:Caption}
+                                <div class="caption">{Caption}</div>
+                            {/block:Caption}
+                        </div>
                     {/block:Video}
+
                    
                     {block:Text}
-                    <div class="post text">
-                        {block:Title}
-                            <div class="title">{Title}</div>
-                        {/block:Title}
-                        {block:Body}
-                            <div class="body">{Body}</div>
-                        {/block:Body}
-                    </div>
+                        <div class="post text">
+                            {block:Title}
+                                <div class="title">{Title}</div>
+                            {/block:Title}
+                            {block:Body}
+                                <div class="body">{Body}</div>
+                            {/block:Body}
+                        </div>
                     {/block:Text}
+
                    
                     {block:Link}
-                    <div class="post link">
-                        <a href="{URL}" {Target}>{Name} &raquo;</a>
-                        {block:Description}
-                            <div class="description">{Description}</div>
-                        {/block:Description}
-                    </div>
+                        <div class="post link">
+                            <a href="{URL}" {Target}>{Name} &raquo;</a>
+                            {block:Description}
+                                <div class="description">{Description}</div>
+                            {/block:Description}
+                        </div>
                     {/block:Link}
 
+
                     {block:Quote}
-                    <div class="post quote {Length}">
-                        <blockquote>
-                            {Quote}
-                        </blockquote>
-                        {block:Source}
-                            <div class="source">{Source}</div>
-                        {/block:Source}
-                    </div>
+                        <div class="post quote {Length}">
+                            <blockquote>
+                                {Quote}
+                            </blockquote>
+                            {block:Source}
+                                <div class="source">{Source}</div>
+                            {/block:Source}
+                        </div>
                     {/block:Quote}
                     
-                    {block:Audio}
-                    <div class="post audio">
-                        {block:IfShowAlbumArtOnAudioPosts}
-                            {block:AlbumArt}
-                                <div class="album_art">
-                                    <img src="{AlbumArtURL}" alt="{block:Artist}{Artist}{/block:Artist}{block:TrackName} - {TrackName}{/block:TrackName}" />
-                                </div>
-                            {/block:AlbumArt}
-                        {/block:IfShowAlbumArtOnAudioPosts}
-                        
-                        <div class="player">{AudioPlayerWhite}</div>
-                        
-                        <div class="meta">
-                            {PlayCountWithLabel}
-                            {block:ExternalAudio}
-                                <span class="download_external_audio"> &bull; <a href="{ExternalAudioURL}">{lang:Download}</a></span>
-                            {/block:ExternalAudio}
-                        </div>
 
-                        {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
-                    </div>
+                    {block:Audio}
+                        <div class="post audio">
+                            {block:IfShowAlbumArtOnAudioPosts}
+                                {block:AlbumArt}
+                                    <div class="album_art">
+                                        <img src="{AlbumArtURL}" alt="{block:Artist}{Artist}{/block:Artist}{block:TrackName} - {TrackName}{/block:TrackName}" />
+                                    </div>
+                                {/block:AlbumArt}
+                            {/block:IfShowAlbumArtOnAudioPosts}
+                            
+                            <div class="player">{AudioPlayerWhite}</div>
+                            
+                            <div class="meta">
+                                {PlayCountWithLabel}
+                                {block:ExternalAudio}
+                                    <span class="download_external_audio"> &bull; <a href="{ExternalAudioURL}">{lang:Download}</a></span>
+                                {/block:ExternalAudio}
+                            </div>
+
+                            {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
+                        </div>
                     {/block:Audio}
+                   
                     
                     {block:Chat}
-                    <div class="post chat">
-                        {block:Title}<div class="title">{Title}</div>{/block:Title}
-                        <div class="lines">
-                            {block:Lines}
-                                <div class="line {Alt}">{block:Label}<strong>{Label}</strong>{/block:Label} {Line}</div>
-                            {/block:Lines}
+                        <div class="post chat">
+                            {block:Title}<div class="title">{Title}</div>{/block:Title}
+                            <div class="lines">
+                                {block:Lines}
+                                    <div class="line {Alt}">{block:Label}<strong>{Label}</strong>{/block:Label} {Line}</div>
+                                {/block:Lines}
+                            </div>
                         </div>
-                    </div>
                     {/block:Chat}
                        
-                       
-                       
- 
-
                     
                     {block:Answer}
-                        <div class="question">
-                            <div class="nipple"></div>
-                            {Question}
+                        <div class="post question-answer">
+                            <div class="question">{Question}</div>
+                            <div class="asker"><img src="{AskerPortraitURL-24}" />{Asker}</div>
+                            <div class="answer">{Answer}</div>
                         </div>
-                        <div class="asker_container"><img src="{AskerPortraitURL-24}">{Asker}</div>
-                        <div class="copy">{Answer}</div>
                     {block:Answer}
-                    
-
-                    
+           
+           
+                    <!-- additional post info --> 
             
                     
-                    {block:Date}
-                        <a href="{Permalink}">
-                             <date datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero} {24HourWithZero}:{Minutes}:{Seconds}:{Beats}">{lang:Posted TimeAgo}</date> {lang:By PostAuthorName}
 
-                            {block:NotReblog}
-                                <!-- original post -->
-                            {/block:NotReblog}
-
-                            {block:Reblog}
-                                {block:RebloggedFromReblog}({lang:Originally from ReblogRootName}){/block:RebloggedFromReblog}
-                            {/block:Reblog}
-                            
-                            <div class="notes">
-                                {block:NoteCount}{NoteCountWithLabel}{/block:NoteCount} 
-                                {block:IfDisqusShortname}
-                                    {block:NoteCount}&bull;{/block:NoteCount} <a href="{Permalink}#disqus_thread">{lang:View comments}</a>
-                                {/block:IfDisqusShortname}
-                            </div>
-                        </a>
-                    {/block:Date}
+                   
                     
-                    <div class="footer {block:ContentSource}with_source_url{/block:ContentSource}" style="
-                        {block:IfShowTags}{block:HasTags}display:block;{/block:HasTags}{/block:IfShowTags}
-                        {block:ContentSource}display:block;{/block:ContentSource}">
+                    <div class="footer">
+
+                        {block:Date}
+                            <a href="{Permalink}">
+                                 
+                                 <date datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero} {24HourWithZero}:{Minutes}:{Seconds}:{Beats}">{lang:Posted TimeAgo}</date>&nbsp;{lang:By PostAuthorName}
+
+                                {block:NotReblog}
+                                    <!-- original post -->
+                                {/block:NotReblog}
+
+                                {block:Reblog}
+                                    {block:RebloggedFromReblog}({lang:Originally from ReblogRootName}){/block:RebloggedFromReblog}
+                                {/block:Reblog}
+                                
+                                <div class="notes">
+                                    {block:NoteCount}{NoteCountWithLabel}{/block:NoteCount} 
+                                </div>
+                            </a>
+                        {/block:Date}
+
                         {block:IfShowTags}
-                            {block:HasTags}<div class="tags">{lang:Tagged}: {block:Tags}<a href="{TagURL}">{Tag}</a><span class="tag-commas">, </span>{/block:Tags}.</div>{/block:HasTags}
+                            {block:HasTags}
+                                <div class="tags">
+                                    {block:Tags}<a href="{TagURL}" class="tag">{Tag}</a>{/block:Tags}
+                                </div>
+                            {/block:HasTags}
                         {/block:IfShowTags}
                         {block:ContentSource}
-                            <a href="{SourceURL}" class="source_url">
-                                {lang:Source}:
-                                {block:SourceLogo}<img src="{BlackLogoURL}" width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" />{/block:SourceLogo}
-                                {block:NoSourceLogo}{SourceTitle}{/block:NoSourceLogo}
-                            </a>
+                            <div class="content-source">
+                                <a href="{SourceURL}" class="content-source-url">
+                                    {lang:Source}:
+                                    {block:SourceLogo}<img src="{BlackLogoURL}" width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" />{/block:SourceLogo}
+                                    {block:NoSourceLogo}{SourceTitle}{/block:NoSourceLogo}
+                                </a>
+                            </div>
                         {/block:ContentSource}
-                        <div class="clear"></div>
                     </div>
+                  
                     
-                    {block:PostNotes}<div class="notecontainer">{PostNotes}</div>{/block:PostNotes}
-                    
-                    {block:IfDisqusShortname}
-                        {block:Permalink}
-                            <div class="notecontainer" style="margin:20px 0 1px 0; padding:1px 10px 10px 10px;">
-                                <div id="disqus_thread"></div>
-                                <script src="http://disqus.com/forums/{text:Disqus Shortname}/embed.js"></script>
-                                <noscript><a href="http://{text:Disqus Shortname}.disqus.com/?url=ref">{lang:View the discussion thread}</a></noscript>
-                            </div>
-                            <div style="text-align:right; margin-top:5px;">
-                                {lang:Blog comments powered by Disqus 2}
-                            </div>
-                        {/block:Permalink}
-                    {/block:IfDisqusShortname}
+                    {block:PostNotes}
+                        <div class="post-notes">{PostNotes}</div>
+                    {/block:PostNotes}
+                
                     
             {/block:Posts}
             </section>
@@ -275,12 +271,12 @@
             <!-- people i follow -->
             {block:IfShowPeopleIFollow}
                 {block:Following}
-                <section id="following">
-                    <div>{lang:Following}</div>
-                    <div id="following-avatars">
-                        {block:Followed}<a href="{FollowedURL}"><img src="{FollowedPortraitURL-40}" /></a>{/block:Followed}
-                    </div>
-                </section>
+                    <section id="following">
+                        <div>{lang:Following}</div>
+                        <div id="following-avatars">
+                            {block:Followed}<a href="{FollowedURL}"><img src="{FollowedPortraitURL-40}" /></a>{/block:Followed}
+                        </div>
+                    </section>
                 {/block:Following}
             {/block:IfShowPeopleIFollow}
 
@@ -301,20 +297,24 @@
 
             <!-- nav elements -->
 
-
-            <nav id="buttons">
-                <div id="button-rss"><a href="{RSS}">{lang:RSS feed}</a></div>
-                <div id="button-random"><a href="/random">{lang:Random}</a></div>
-                <div id="button-archive"><a href="/archive">{lang:Archive}</a></div>
-                <div id="button-mobile"><a href="/mobile">{lang:Mobile}</a></div>
-            </nav>
-
-
             {block:HasPages}
                 <nav id="page-links">
-                {block:Pages}<a href="{URL}">{Label}</a>{/block:Pages}
+                    {block:Pages}<a href="{URL}">{Label}</a>{/block:Pages}
                 </nav>
             {/block:HasPages}
+
+            <nav id="meta-links">
+                <a href="{RSS}">{lang:RSS feed}</a>
+                <a href="/random">{lang:Random}</a>
+                <a href="/archive">{lang:Archive}</a>
+                <a href="/mobile">{lang:Mobile}</a>
+                <a href="http://www.tumblr.com/follow/{Name}" id="followontumblr-link">{lang:Follow on Tumblr}</a>
+                <!-- the "ask" link -->
+                {block:AskEnabled}<a href="/ask" id="ask-link">{AskLabel}</a>{/block:AskEnabled}
+                <!-- the "submit" link -->
+                {block:SubmissionsEnabled}<a href="/submit" id="submit-link">{SubmitLabel}</a>{/block:SubmissionsEnabled}
+            </nav>
+
 
 
             {block:Pagination}
@@ -343,7 +343,7 @@
 
 
 
-
+            <div class="clearfix"></div>
         </section>
         <!-- end of main section -->
         
