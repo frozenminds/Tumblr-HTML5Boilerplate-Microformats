@@ -1,15 +1,19 @@
 Summary:
 
-A basic HTML 5 boilerplate template for building custom Tumblr themes.
+A very basic HTML 5 boilerplate template for building custom Tumblr themes.
 
-Works great with CSS Inject for Chrome:
-https://chrome.google.com/webstore/detail/fmiohbdblcemacakpnoinjmcelddpjbg
+Building upon the great work already done by HTML5 Boilerplate 2.0: 
+http://html5boilerplate.com/
 
-Building upon the great work already done by: 
-http://html5boilerplate.com
-
-Neither I nor this project have any relation or are endoresed by Tumblr.
+The theme also incorporates Microformats (http://microformats/):
+hAtom - http://microformats.org/wiki/hatom
+hCard - http://microformats.org/wiki/hcard
 
 More info on building Tumblr themese can be found at: 
-http://www.tumblr.com/docs/en/custom_themes
+http://www.tumblr.com/docs/custom_themes
+http://www.tumblr.com/docs/localizing_themes
 
+This is an update to the started project "Tumblr-HTML5-Boilerplate" (http://github.com/sym3tri/Tumblr-HTML5-Boilerplate) by Ed Rooth (http://github.com/sym3tri)
+
+
+Note: Neither I nor this project have any relation or are endoresed by Tumblr!
