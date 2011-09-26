@@ -1,0 +1,490 @@
+<!doctype html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!-- Consider adding an manifest.appcache: h5bp.com/d/Offline -->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+
+        <!-- Use the .htaccess and remove these lines to avoid edge case issues.
+             More info: h5bp.com/b/378 -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+        <!-- Kill IE6 pop-up-on-mouseover toolbar for images -->
+        <meta http-equiv="imagetoolbar" content="false">
+
+        <!-- Page title -->
+        <title>{block:SearchPage}{lang:Search results for SearchQuery} - {/block:SearchPage}{block:PostSummary}{PostSummary} - {/block:PostSummary}{Title}</title>
+
+        {block:Description}
+        <meta name="description" content="{MetaDescription}">
+        {/block:Description}
+
+        <!-- Page generator -->
+        <meta name="generator" content="Constantin Bejenaru (frozenminds.com)">
+
+        <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <!-- Favicons -->
+        <link rel="shortcut icon" href="{Favicon}">
+        <link rel="apple-touch-icon" href="{PortraitURL-128}">
+
+        <!-- RSS Feed -->
+        <link rel="alternate" type="application/rss+xml" title="{lang:RSS}" href="{RSS}">
+
+        <!-- Custom variables -->
+        <meta name="text:Disqus Shortname" content="">
+        <meta name="text:Google Analytics ID" content="">
+
+        {block:PermalinkPage}
+        {block:Posts}
+        <!-- Canonical h5bp.com/docs/head-Tips/#urls -->
+        <link rel="canonical" href="{Permalink}">
+        <!-- Shortlink h5bp.com/docs/head-Tips/#urls -->
+        <link rel="shortlink" href="{ShortURL}">
+        {/block:Posts}
+        {/block:PermalinkPage}
+
+        <!-- Facebook share tags -->
+        <meta property="og:site_name" content="{Title}">
+        {block:PermalinkPage}
+        <meta property="og:title" content="{block:PostSummary}{PostSummary} - {/block:PostSummary}{Title}">
+
+        {block:Posts}
+        {block:Photo}
+        {block:Description}
+        <meta property="og:description" content="{MetaDescription}">
+        {/block:Description}
+        <meta property="og:image" content="{PhotoURL-100}">
+        <meta name="medium" content="image">
+        {/block:Photo}
+
+        {block:Audio}
+        {block:AlbumArt}
+        {block:Description}
+        <meta property="og:description" content="{MetaDescription}">
+        {/block:Description}
+        <meta property="og:image" content="{AlbumArtURL}">
+        {/block:AlbumArt}
+        {block:ExternalAudio}
+        <meta property="og:audio" content="{ExternalAudioURL}">
+        {/block:ExternalAudio}
+        {block:Artist}
+        <meta property="og:audio:artist" content="{Artist}">
+        {/block:Artist}
+        {block:Album}
+        <meta property="og:audio:album" content="{Album}">
+        {/block:Album}
+        {/block:Audio}
+
+        {block:Answer}
+        <meta property="og:description" content="{Question}">
+        <meta property="og:image" content="{AskerPortraitURL-128}">
+        {/block:Answer}
+
+        {block:Text}
+        <meta property="og:image" content="{PortraitURL-128}">
+        <meta property="og:description" content="{Text}">
+        {/block:Text}
+
+        {block:Photoset}
+        {block:Description}
+        <meta property="og:description" content="{MetaDescription}">
+        {/block:Description}
+        <meta property="og:image" content="{PortraitURL-128}">
+        {/block:Photoset}
+
+        {block:Quote}
+        <meta property="og:description" content="{Quote}">
+        <meta property="og:image" content="{PortraitURL-128}">
+        {/block:Quote}
+
+        {block:Link}
+        {block:Description}
+        <meta property="og:description" content="{Description}">
+        {/block:Description}
+        <meta property="og:image" content="{PortraitURL-128}">
+        {/block:Link}
+
+        {block:Chat}
+        {block:Description}
+        <meta property="og:description" content="{MetaDescription}">
+        {/block:Description}
+        <meta property="og:image" content="{PortraitURL-128}">
+        {/block:Chat}
+
+        {block:Video}
+        {block:Description}
+        <meta property="og:description" content="{MetaDescription}">
+        {/block:Description}
+        <meta property="og:image" content="{PortraitURL-128}">
+        {/block:Video}
+        {/block:Posts}
+        {/block:PermalinkPage}
+
+        {block:IndexPage}
+        {block:PostSummary}
+        <meta property="og:title" content="{PostSummary}">
+        {/block:PostSummary}
+        {block:Description}
+        <meta property="og:description" content="{MetaDescription}">
+        {/block:Description}
+        <meta property="og:image" content="{PortraitURL-128}">
+        {/block:IndexPage}
+        <!-- /Facebook share tags -->
+
+        <!-- CSS: implied media=all -->
+        <link rel="stylesheet" href="/css/style.css">
+
+        <!-- Custom CSS -->
+        <style type="text/css">
+            {CustomCSS}
+        </style>
+
+        <!-- All JavaScript at the bottom, except for Modernizr / Respond.
+             Modernizr enables HTML5 elements & feature detects; Respond is a polyfill for min/max-width CSS3 Media Queries
+             For optimal performance, use a custom Modernizr build: www.modernizr.com/download/ -->
+        <script src="/js/libs/modernizr-2.0.6.min.js"></script>
+    </head>
+    <body>
+        <div id="container">
+
+            <!-- Page header -->
+            <header id="header" role="banner">
+                <h1><a href="/" title="{Title}" class="home" rel="home"><span id="header-title">{Title}</span></a></h1>
+                {block:Description}
+                <div id="header-description">{Description}</div>
+                {/block:Description}
+            </header>
+            <!-- /Page header -->
+
+            <!-- Main content -->
+            <section id="main" role="main">
+
+                <!-- Search form -->
+                <section id="search">
+                    <form action="/search" method="get" id="search-form">
+                        <input type="hidden" name="t" value="{Name}">
+                        <input type="hidden" name="scope" value="all_of_tumblr">
+                        <input type="text" name="q" class="query" value="{SearchQuery}">
+                        <input type="submit" value="{lang:Search}" title="Start search" class="submit">
+                    </form>
+                </section>
+                <!-- /Search form -->
+
+                {block:SearchPage}
+                <!-- Search results info -->
+                <section  id="search-results">
+                    {block:SearchResults}
+                    {lang:SearchResultCount results for SearchQuery 2}
+                    {/block:SearchResults}
+                    {block:NoSearchResults}
+                    {lang:No search results for SearchQuery 2}
+                    {/block:NoSearchResults}
+                </section>
+                <!-- /Search results info -->
+                {/block:SearchPage}
+
+                <!-- Post(s) -->
+                <section  id="posts" class="hfeed {block:IndexPage}page-index{/block:IndexPage}{block:PermalinkPage}page-permalink{/block:PermalinkPage}{block:SearchPage}page-search{/block:SearchPage}">
+                    {block:Posts}
+                    <article id="post-{PostID}" class="post type-post {PostType} hentry entry">
+
+                        {block:Photo}
+                        <div class="entry-content">
+                            <a href="{LinkURL}" title="{PhotoAlt}"><img src="{PhotoURL-500}" alt="{PhotoAlt}"></a>
+                        </div>
+                        {/block:Photo}
+
+                        {block:Photoset}
+                        <header>
+                            <h1 class="entry-title"><a href="{Permalink}" title="{Title}" rel="bookmark">{Title}</a></h1>
+                        </header>
+                        <div class="entry-content">{Photoset-500}</div>
+                        {/block:Photoset}
+
+                        {block:Video}
+                        <header>
+                            <h1 class="entry-title"><a href="{Permalink}" title="{Title}" rel="bookmark">{Title}</a></h1>
+                        </header>
+                        <div class="entry-content">{Video-500}</div>
+                        {/block:Video}
+
+                        {block:Audio}
+                        <header>
+                            <h1 class="entry-title"><a href="{Permalink}" title="{Title}" rel="bookmark">{Title}</a></h1>
+                        </header>
+                        <div class="entry-content">{AudioPlayer}</div>
+                        {/block:Audio}
+
+                        {block:Link}
+                        <header>
+                            <h1 class="entry-title"><a href="{URL}" title="{Title}" {Target}>{Name}</a></h1>
+                        </header>
+                        {block:Description}
+                        <div class="entry-content">{Description}</div>
+                        {/block:Description}
+                        {/block:Link}
+
+                        {block:Text}
+                        {block:Title}
+                        <header>
+                            <h1 class="entry-title"><a href="{Permalink}" title="{Title}" rel="bookmark">{Title}</a></h1>
+                        </header>
+                        {/block:Title}
+                        <div class="entry-content">{Body}</div>
+                        {block:Text}
+
+                        {block:Quote}
+                        <div class="entry-content">
+                            <blockquote>{Quote}</blockquote>
+                            {block:Source}
+                            <div class="entry-source">{Source}</div>
+                            {/block:Source}
+                        </div>
+                        {block:Quote}
+
+                        {block:Chat}
+                        {block:Title}
+                        <header>
+                            <h1 class="entry-title"><a href="{Permalink}" title="{Title}" rel="bookmark">{Title}</a></h1>
+                        </header>
+                        {/block:Title}
+                        <div class="entry-content">
+                            <dl>
+                                {block:Lines}
+                                {block:Label}
+                                <dt class="label">{Label}</dt>
+                                {/block:Label}
+                                <dd class="line">{Line}</dd>
+                                {/block:Lines}
+                            </dl>
+                        </div>
+                        {/block:Chat}
+
+                        {block:Answer}
+                        <div class="entry-content">
+                            <dl>
+                                <dt class="asker"><img src="{AskerPortraitURL-24}" alt="{lang:Asked by Asker}"> {Asker}</dt>
+                                <dd class="question" class="entry-title"><a href="{Permalink}" title="{Question}" rel="bookmark">{Question}</a></dd>
+                                <dt class="author"><img src="{PortraitURL-24}" alt="{lang:Posted by PostAuthorName}"> {lang:Answer}</dt>
+                                <dd class="answer">{Answer}</dd>
+                            </dl>
+                        </div>
+                        {block:Answer}
+
+                        {block:Caption}
+                        <div class="entry-caption caption">{Caption}</div>
+                        {/block:Caption}
+
+                        <footer class="post-info" role="contentinfo">
+                            <ul>
+                                <li class="permalink"><a href="{Permalink}" title="{lang:Permalink for this post}" rel="bookmark">{lang:Permalink}</a></li>
+                                <li class="author"><address class="vcard author"><a class="url fn" href="{PostAuthorURL}" title="{PostAuthorTitle}">{PostAuthorName}</a></address></li>
+                                {block:Date}
+                                {block:NotReblog}
+                                <li class="date">
+                                    <time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero}" title="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero}T{24HourWithZero}:{Minutes}:{Seconds}" class="published" pubdate>{DayOfMonthWithZero} {ShortMonth} {Year}</time>
+                                </li>
+                                {/block:NotReblog}
+                                {/block:Date}
+                                {block:Reblog}
+                                <li class="reblog">
+                                    {lang:Reblogged TimeAgo from ReblogParentName 2}{block:RebloggedFromReblog}(<span class="reblog-root-name">{lang:Originally from ReblogRootName 2}</span>){/block:RebloggedFromReblog}
+                                </li>
+                                {/block:Reblog}
+
+                                {block:NoteCount}
+                                <li class="notes">
+                                    <a href="{Permalink}#notes" title="{lang:View notes for this post}">{NoteCountWithLabel}</a>
+                                </li>
+                                {/block:NoteCount}
+
+                                {block:HasTags}
+                                <!-- Tags -->
+                                <li class="tags">
+                                    <ul class="taglist">
+                                        {block:Tags}
+                                        <li>
+                                            <a href="{TagURL}" title="{lang:Tagged with} {Tag}" rel="tag">{Tag}</a>
+                                        </li>
+                                        {/block:Tags}
+                                    </ul>
+                                </li>
+                                <!-- /Tags -->
+                                {/block:HasTags}
+
+                                {block:ContentSource}
+                                <li class="source">
+                                    <a href="{SourceURL}" title="{SourceTitle}">
+                                        {lang:Source}:
+                                        {block:SourceLogo}
+                                        <img src="{BlackLogoURL}" width="{LogoWidth}"
+                                             height="{LogoHeight}" alt="{SourceTitle}">
+                                        {/block:SourceLogo}
+                                        {block:NoSourceLogo}
+                                        {SourceTitle}
+                                        {/block:NoSourceLogo}
+                                    </a>
+                                </li>
+                                {/block:ContentSource}
+                            </ul>
+                        </footer>
+                    </article>
+                    {/block:Posts}
+                </section>
+                <!-- Post(s) -->
+
+                {block:IfDisqusShortname}
+                <div id="disqus_thread"></div>
+                {/block:IfDisqusShortname}
+
+                {block:Pagination}
+                <nav id="pagination" class="pagination">
+                    {block:PreviousPage}<a href="{PreviousPage}" title="{lang:Previous page}">{lang:Previous}</a>{/block:PreviousPage}
+
+                    {block:JumpPagination length="5"}
+                    {block:CurrentPage}
+                    <strong class="page-current">{PageNumber}</strong>
+                    {/block:CurrentPage}
+
+                    {block:JumpPage}
+                    <a href="{URL}" title="{PageNumber}" class="page-jump">{PageNumber}</a>
+                    {/block:JumpPage}
+                    {/block:JumpPagination}
+
+                    {block:NextPage}<a href="{NextPage}" title="{lang:Next page}">{lang:Next page}</a>{/block:NextPage}
+                </nav>
+                {/block:Pagination}
+
+            </section>
+            <!-- /Main content -->
+
+            <!-- Secondary content -->
+            <aside>
+                {block:HasPages}
+                <!-- Main menu -->
+                <nav id="navigation" class="navigation menu">
+                    <h3>{lang:Navigate}</h3>
+                    <ul>
+                        {block:Pages}
+                        <li><a href="{URL}" title="{Label}">{Label}</a></li>
+                        {/block:Pages}
+                    </ul>
+                </nav>
+                <!-- /Main menu -->
+                {/block:HasPages}
+
+                <!-- Meta link -->
+                <nav id="meta-links" class="meta-links">
+                    <ul>
+                        <li><a href="{RSS}" title="{lang:RSS feed}">{lang:RSS feed}</a></li>
+                        <li><a href="/random" title="{lang:Random post}">{lang:Random}</a></li>
+                        <li> <a href="/archive" title="{lang:Browse the archive}">{lang:Archive}</a></li>
+                        <li><a href="/mobile" title="{lang:Mobile version}">{lang:Mobile}</a></li>
+                        <li><a href="http://www.tumblr.com/follow/{Name}" title="{lang:Follow on Tumblr}" id="link-followontumblr" class="url" rel="me">{lang:Follow on Tumblr}</a></li>
+                        {block:AskEnabled}<li><a href="/ask" title="{AskLabel}" id="link-ask">{AskLabel}</a></li>{/block:AskEnabled}
+                        {block:SubmissionsEnabled}<li><a href="/submit" title="{SubmitLabel}" id="link-submit">{SubmitLabel}</a></li>{/block:SubmissionsEnabled}
+                    </ul>
+                </nav>
+                <!-- /Meta link -->
+
+                {block:IfShowPeopleIFollow}
+                <!-- People I follow -->
+                {block:Following}
+                <section id="following">
+                    <div>{lang:Following}</div>
+                    <ul>
+                        {block:Followed}<li><img src="{FollowedPortraitURL-40}" alt="{FollowedName}"> <a href="{FollowedURL}" title="{FollowedName}" class="url">{FollowedName}</a></li>{/block:Followed}
+                    </ul>
+                </section>
+                {/block:Following}
+                <!-- /People I follow -->
+                {/block:IfShowPeopleIFollow}
+
+
+                <!-- twitter specific stuff -->
+                {block:Twitter}
+                <section id="twitter">
+                    <a href="http://twitter.com/{TwitterUsername}" title="{lang:Follow on Twitter}" id="link-twitter" class="url" rel="me">{lang:Latest Tweets}</a>
+                    <div id="tweets"></div>
+                </section>
+                {/block:Twitter}
+            </aside>
+            <!-- /Secondary content -->
+
+            <!-- Page footer -->
+            <footer>
+                <div id="copyright">&copy; {CopyrightYears} frozenminds.com</div>
+                <div id="powered">{lang:Powered by Tumblr 2}, <a href="http://html5boilerplate.com/" title="HTML5 Boilerplate">HTML5 Boilerplate</a>, <a href="http://microformats.org/" title="Microformats">Microformats</a></div>
+            </footer>
+            <!-- /Page footer -->
+        </div> <!--! end of #container -->
+
+
+        <!-- JavaScript at the bottom for fast page loading -->
+
+        <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="/js/libs/jquery-1.6.4.min.js"><\/script>')</script>
+
+        <!-- JavaScript -->
+        <script>
+            {block:IfGoogleAnalyticsID}
+            window._gaq = [['_setAccount','{text:Google Analytics ID}'],['_trackPageview'],['_trackPageLoadTime']];
+            {/block:IfGoogleAnalyticsID}
+
+            {block:Twitter}
+            /**
+             * Load Twitter feed
+             */
+            function recent_tweets(data) {
+                for (i=0; i<data.length; i++) {
+                    document.getElementById("tweets").innerHTML =
+                        document.getElementById("tweets").innerHTML +
+                        '<a href="http://twitter.com/{TwitterUsername}/status/' +
+                        (data[i].id_str ? data[i].id_str : data[i].id) +
+                        '"><div class="content">' + data[i].text +
+                        '</div></a>';
+                }
+                document.getElementById("twitter").style.display = 'block';
+            }
+            {/block:Twitter}
+
+            // Load resources with Modernizr
+            Modernizr.load([
+                // Plugins
+                {
+                    load: '/js/plugins.js'
+                },
+                // Other scrips
+                {
+                    load: '/js/script.js',
+                },
+                {block:Twitter}
+                // Twitter
+                {
+                    load: '/tweets.js'
+                },
+                {/block:Twitter}
+                {block:IfGoogleAnalyticsID}
+                // Google Analytics
+                {
+                    load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
+                }
+                {/block:IfGoogleAnalyticsID}
+            ]);
+        </script>
+        <!-- Modernizr loaded scripts -->
+
+        <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you want to support IE 6.
+             chromium.org/developers/how-tos/chrome-frame-getting-started -->
+        <!--[if lt IE 7 ]>
+          <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+          <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
+        <![endif]-->
+    </body>
+</html>
