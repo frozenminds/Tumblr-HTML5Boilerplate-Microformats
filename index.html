@@ -145,9 +145,10 @@
         </style>
 
         <!-- All JavaScript at the bottom, except for Modernizr / Respond.
-             Modernizr enables HTML5 elements & feature detects; Respond is a polyfill for min/max-width CSS3 Media Queries
-             For optimal performance, use a custom Modernizr build: www.modernizr.com/download/ -->
-        <script src="/js/libs/modernizr-2.0.6.min.js"></script>
+             Modernizr enables HTML5 elements & feature detects; Respond is a polyfill for min/max-width CSS3 Media Queries  -->
+        <!-- Grab CDNJS CDN's Modernizr, with a protocol relative URL; fall back to local if offline -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.0.6/modernizr.min.js"></script>
+        <script>window.Modernizr || document.write('<script src="/js/libs/modernizr-2.0.6.min.js"><\/script>')</script>
     </head>
     <body>
         <div id="container">
@@ -339,7 +340,11 @@
                 <!-- Post(s) -->
 
                 {block:IfDisqusShortname}
+                {block:Permalink}
                 <div id="disqus_thread"></div>
+                <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript={text:Disqus Shortname}">comments powered by Disqus.</a></noscript>
+                {lang:Blog comments powered by Disqus 2}
+                {/block:Permalink}
                 {/block:IfDisqusShortname}
 
                 {block:Pagination}
@@ -439,7 +444,10 @@
 
             {block:Twitter}
             /**
-             * Load Twitter feed
+             * Parse and write Twitter feed
+             *
+             * @param {json} data
+             * @return void
              */
             function recent_tweets(data) {
                 for (i=0; i<data.length; i++) {
@@ -453,6 +461,27 @@
                 document.getElementById("twitter").style.display = 'block';
             }
             {/block:Twitter}
+
+            {block:IfDisqusShortname}
+            // Disqus vars
+            var disqus_url = "{Permalink}";
+            var disqus_title ="{block:PostTitle}{PostTitle}{/block:PostTitle}";
+            var disqus_shortname = '{text:Disqus Shortname}';
+            {block:Permalink}
+            var disqus_identifier = '{PostID}';
+            // Load Disqus
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//{text:Disqus Shortname}.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+            {/block:Permalink}
+            (function () {
+                var s = document.createElement('script'); s.async = true;
+                s.src = '//{text:Disqus Shortname}.disqus.com/count.js';
+                (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+            }());
+            {/block:IfDisqusShortname}
 
             // Load resources with Modernizr
             Modernizr.load([
