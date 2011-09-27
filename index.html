@@ -439,6 +439,7 @@
         <!-- JavaScript -->
         <script>
             {block:IfGoogleAnalyticsID}
+            // Google Analytics global object
             window._gaq = [['_setAccount','{text:Google Analytics ID}'],['_trackPageview'],['_trackPageLoadTime']];
             {/block:IfGoogleAnalyticsID}
 
@@ -464,35 +465,35 @@
 
             {block:IfDisqusShortname}
             // Disqus vars
-            var disqus_url = "{Permalink}";
-            var disqus_title ="{block:PostTitle}{PostTitle}{/block:PostTitle}";
+            var disqus_url = '{Permalink}';
+            var disqus_title = '{block:PostSummary}{PostSummary} - {block:PostSummary}{Title}';
             var disqus_shortname = '{text:Disqus Shortname}';
             {block:Permalink}
             var disqus_identifier = '{PostID}';
-            // Load Disqus
-            (function() {
-                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                dsq.src = '//{text:Disqus Shortname}.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-            })();
             {/block:Permalink}
-            (function () {
-                var s = document.createElement('script'); s.async = true;
-                s.src = '//{text:Disqus Shortname}.disqus.com/count.js';
-                (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-            }());
             {/block:IfDisqusShortname}
 
             // Load resources with Modernizr
             Modernizr.load([
-                // Plugins
+                // Plugins and other scripts
                 {
-                    load: '/js/plugins.js'
+                    load: [
+                        '/js/plugins.js',
+                        '/js/script.js'
+                    ]
                 },
-                // Other scrips
+                {block:IfDisqusShortname}
+                // Disqus comments
                 {
-                    load: '/js/script.js',
+                    load: [
+                        {block:Permalink}
+                        // Embed script
+                        '//{text:Disqus Shortname}.disqus.com/embed.js',{/block:Permalink}
+                        // Count script
+                        '//{text:Disqus Shortname}.disqus.com/count.js'
+                    ]
                 },
+                {/block:IfDisqusShortname}
                 {block:Twitter}
                 // Twitter
                 {
@@ -507,7 +508,6 @@
                 {/block:IfGoogleAnalyticsID}
             ]);
         </script>
-        <!-- Modernizr loaded scripts -->
 
         <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you want to support IE 6.
              chromium.org/developers/how-tos/chrome-frame-getting-started -->
