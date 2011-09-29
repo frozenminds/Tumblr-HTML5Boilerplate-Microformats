@@ -18,13 +18,11 @@ window.log = function(){
    }
 })((function(){
    try
-
    {
       console.log();
       return window.console;
    }catch(err){
       return window.console={};
-
    }
 })());
 

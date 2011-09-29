@@ -383,11 +383,9 @@
                         </li>
                         {/block:NoteCount}
 
-                        {block:IndexPage}
                         <li class="comments">
                            <a href="{Permalink}#disqus_thread" title="{lang:View comments for this post}" class="dsq-comment-count">{lang:View comments}</a>
                         </li>
-                        {/block:IndexPage}
 
                         {block:HasTags}
                         <!-- Tags -->
@@ -569,13 +567,13 @@
          {/block:Twitter}
 
          {block:IfDisqusShortname}
+         // Disqus vars
+         var disqus_shortname = '{text:Disqus Shortname}';
          {block:Permalink}
          {block:Posts}
          {block:Date}
-         // Disqus vars
          var disqus_url = '{Permalink}';
          var disqus_title = '{block:PostTitle}{PlaintextPostTitle}{/block:PostTitle}';
-         var disqus_shortname = '{text:Disqus Shortname}';
          var disqus_identifier = '{PlaintextPostID}';
          {/block:Date}
          {/block:Posts}
