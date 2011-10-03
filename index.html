@@ -362,7 +362,7 @@
                         {block:Date}
                         <li class="permalink"><a href="{Permalink}" title="{lang:Permalink for this post}" rel="bookmark">{lang:Permalink}</a></li>
                         {/block:Date}
-                        <li class="author"><address class="vcard author"><a class="url fn" href="{PostAuthorURL}" title="{PostAuthorTitle}">{PostAuthorName}</a></address></li>
+                        <li id="hcard-{PostAuthorName}" class="vcard author"><a class="url fn nickname" href="{PostAuthorURL}" title="{PostAuthorTitle}">{PostAuthorName}</a></li>
                         {block:Date}
                         {block:NotReblog}
                         <li class="date">
